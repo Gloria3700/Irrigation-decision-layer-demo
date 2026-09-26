@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interactive research prototype showing how probabilistic hydrological forecasts can be translated into collective irrigation decisions." />
+  <title>Irrigation Decision Layer | Research Prototype</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Home">
+      <span class="drop" aria-hidden="true"></span>
+      <span>
+        <strong>Irrigation Decision Layer</strong>
+        <small>Research prototype · WP A → D</small>
+      </span>
+    </a>
+    <nav>
+      <a href="#context">Context</a>
+      <a href="#lab">Decision Lab</a>
+      <a href="#wpb">WP B</a>
+      <a href="#wpc">WP C</a>
+      <a href="#wpd">WP D</a>
+      <a href="#sources">Sources</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy">
+        <div class="eyebrow">FORECAST → DECISION → ACTION → OUTCOME</div>
+        <h1>When should a probabilistic forecast <em>actually change</em> an irrigation decision?</h1>
+        <p class="lead">
+          A GitHub-ready interactive demonstration of a configurable decision layer for collective irrigation
+          under hydrological uncertainty. The public Authion / A3P context is real; the scenario values and decision
+          rules in this demo are deliberately synthetic and illustrative.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#lab">Open decision lab</a>
+          <a class="button ghost" href="#architecture">See RP architecture</a>
+        </div>
+        <div class="hero-note">
+          <strong>Research question:</strong> forecast skill alone is not decision value. The key test is whether
+          additional information changes a feasible action or improves the resulting outcome.
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="mini-label">Illustrative live state</div>
+        <div class="big-risk" id="heroRisk">62%</div>
+        <div class="risk-caption">14-day low-resource probability</div>
+        <div class="mini-grid">
+          <div><span>Resource</span><strong id="heroResource">52 / 100</strong></div>
+          <div><span>Demand</span><strong id="heroDemand">76 / 100</strong></div>
+          <div><span>Allocation used</span><strong id="heroUsed">68%</strong></div>
+          <div><span>Recommended</span><strong id="heroAction">Reduce 10%</strong></div>
+        </div>
+        <div class="confidence-line">
+          <span>Decision relevance</span>
+          <div class="meter"><i id="relevanceMeter"></i></div>
+          <strong id="relevanceLabel">High</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="context-section" id="context">
+      <div class="shell">
+        <div class="section-heading">
+          <div class="eyebrow">REAL PUBLIC CONTEXT</div>
+          <h2>Why collective irrigation is a strong pilot for the RP</h2>
+          <p>
+            The Authion basin already has collective allocation, annual plans, many withdrawal points,
+            changing crop needs and regulatory drought constraints. A3P explicitly aims to combine crop-water
+            need modelling with AI-based hydrological availability forecasts to support dynamic irrigation management.
+          </p>
+        </div>
+
+        <div class="fact-grid">
+          <article class="fact"><strong>~600</strong><span>irrigating farms in the Authion basin</span></article>
+          <article class="fact"><strong>16–18k ha</strong><span>irrigated annually</span></article>
+          <article class="fact"><strong>23–30 Mm³</strong><span>withdrawn in a typical year range reported publicly</span></article>
+          <article class="fact"><strong>~2,200</strong><span>surface- and groundwater withdrawal points</span></article>
+          <article class="fact"><strong>10</strong><span>management units under the Authion OUGC framework</span></article>
+          <article class="fact"><strong>A3P</strong><span>crop demand + hydrology + AI + satellite information</span></article>
+        </div>
+
+        <div class="context-panels">
+          <article class="panel">
+            <div class="panel-kicker">What is already operational?</div>
+            <h3>Collective allocation & monitoring</h3>
+            <p>
+              Public descriptions of OUGC Authion show annual water-volume requests, individual and collective
+              review, a Plan Annuel de Répartition (PAR), and possible collective reductions when requests exceed
+              available volume for a management unit/resource.
+            </p>
+            <ul class="compact">
+              <li>Spatial inventory of users, withdrawal points, crops and resources</li>
+              <li>Annual allocation planning and regulatory documentation</li>
+              <li>Withdrawal-volume monitoring and drought restrictions</li>
+              <li>Potential tours d’eau, notifications and dynamic dashboards</li>
+            </ul>
+          </article>
+          <article class="panel accent">
+            <div class="panel-kicker">What is the research gap?</div>
+            <h3>From monitoring to forecast-informed action</h3>
+            <p>
+              A3P describes a digital decision-support service that adjusts collective irrigation strategies using
+              both actual crop needs and water availability. The RP adds the explicit decision layer:
+              <strong>which predictive information matters, in which state, under which strategy, and with what action?</strong>
+            </p>
+            <div class="flow-mini">
+              <span>State</span><b>×</b><span>Forecast</span><b>×</b><span>Strategy</span><b>→</b><span>Action</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="architecture-section" id="architecture">
+      <div class="shell">
+        <div class="section-heading">
+          <div class="eyebrow">RP ARCHITECTURE</div>
+          <h2>One analytical chain, four work packages</h2>
+        </div>
+        <div class="wp-strip">
+          <article>
+            <div class="wp-tag">WP A</div>
+            <h3>Decision context</h3>
+            <p>Reconstruct current practice: actor, state, actions, objectives, constraints, horizon and baseline rule.</p>
+          </article>
+          <div class="arrow">→</div>
+          <article>
+            <div class="wp-tag">WP B</div>
+            <h3>Information value</h3>
+            <p>Hold the state fixed, vary forecast information, and test what changes action, timing, intensity or outcome.</p>
+          </article>
+          <div class="arrow">→</div>
+          <article>
+            <div class="wp-tag">WP C</div>
+            <h3>Strategy value</h3>
+            <p>With the same state and forecast, compare current practice, simple rules, risk-aware and robust formulations.</p>
+          </article>
+          <div class="arrow">→</div>
+          <article>
+            <div class="wp-tag">WP D</div>
+            <h3>Decision service</h3>
+            <p>Return a traceable recommendation, reason and review horizon that can be integrated into a digital service.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="lab-section" id="lab">
+      <div class="shell">
+        <div class="section-heading">
+          <div class="eyebrow">INTERACTIVE RESEARCH DEMO</div>
+          <h2>Build one operational state, then see what the decision layer does</h2>
+          <p>
+            Move the controls or select a preset. All numbers below are synthetic so that the logic can be demonstrated
+            without pretending to reproduce a confidential pilot rule.
+          </p>
+        </div>
+
+        <div class="presets">
+          <button data-preset="balanced" class="preset active">Balanced July</button>
+          <button data-preset="boundary" class="preset">Near decision boundary</button>
+          <button data-preset="drought" class="preset">Severe drought</button>
+          <button data-preset="highprob">High probability, low value</button>
+          <button data-preset="moderate">Moderate probability, high value</button>
+        </div>
+
+        <div class="lab-grid">
+          <section class="controls panel">
+            <div class="panel-kicker">WP A · State definition</div>
+            <h3>Operational state</h3>
+
+            <label class="control">
+              <span><b>Resource availability index</b><output id="resourceOut">52</output></span>
+              <input id="resource" type="range" min="0" max="100" value="52" />
+              <small>0 = critically depleted · 100 = abundant</small>
+            </label>
+
+            <label class="control">
+              <span><b>Crop water-demand index</b><output id="demandOut">76</output></span>
+              <input id="demand" type="range" min="0" max="100" value="76" />
+              <small>Higher values mean stronger irrigation demand.</small>
+            </label>
+
+            <label class="control">
+              <span><b>Annual allocation already used</b><output id="usedOut">68%</output></span>
+              <input id="used" type="range" min="0" max="100" value="68" />
+              <small>Illustrates how much room remains within an annual allocation.</small>
+            </label>
+
+            <div class="divider"></div>
+            <div class="panel-kicker">WP B · Predictive information</div>
+
+            <label class="control">
+              <span><b>Probability of low-resource event</b><output id="probOut">62%</output></span>
+              <input id="prob" type="range" min="0" max="100" value="62" />
+              <small>Illustrative probability that a management threshold is crossed within the forecast horizon.</small>
+            </label>
+
+            <label class="control">
+              <span><b>Ensemble spread / uncertainty</b><output id="spreadOut">18</output></span>
+              <input id="spread" type="range" min="0" max="40" value="18" />
+              <small>Higher values indicate a wider predictive distribution.</small>
+            </label>
+
+            <label class="select-row">
+              <span><b>Forecast horizon</b></span>
+              <select id="horizon">
+                <option value="7">7 days</option>
+                <option value="14" selected>14 days</option>
+                <option value="30">30 days</option>
+              </select>
+            </label>
+          </section>
+
+          <section class="decision panel output-panel">
+            <div class="panel-kicker">Current decision service output</div>
+            <div class="status-row">
+              <span class="status-dot" id="statusDot"></span>
+              <span id="riskBand">Elevated risk</span>
+            </div>
+            <div class="decision-action" id="decisionAction">Reduce planned abstraction by 10%</div>
+            <p id="decisionReason">
+              Forecast risk is near a switching boundary while current resource conditions are moderately constrained.
+            </p>
+
+            <div class="output-grid">
+              <div><span>Strategy</span><strong id="selectedStrategyName">Simple forecast-informed rule</strong></div>
+              <div><span>Review</span><strong id="review">3 days</strong></div>
+              <div><span>Decision relevance</span><strong id="decisionRelevant">High</strong></div>
+              <div><span>Confidence note</span><strong id="confidenceNote">Uncertainty visible</strong></div>
+            </div>
+
+            <div class="strategy-switch">
+              <span>Use strategy:</span>
+              <button class="strategy-btn" data-strategy="baseline">Current practice</button>
+              <button class="strategy-btn active" data-strategy="simple">Simple threshold</button>
+              <button class="strategy-btn" data-strategy="risk">Risk-aware</button>
+              <button class="strategy-btn" data-strategy="robust">Robust minimax regret</button>
+            </div>
+
+            <div class="explain-box">
+              <strong>Trace</strong>
+              <ol id="trace"></ol>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="wpb-section" id="wpb">
+      <div class="shell">
+        <div class="section-heading">
+          <div class="eyebrow">WP B · CONTROLLED INFORMATION EXPERIMENT</div>
+          <h2>Keep the state fixed. Change only the forecast information.</h2>
+          <p>This is the central ablation idea in the RP: richer information is useful only if it changes action or outcome.</p>
+        </div>
+
+        <div class="info-cards" id="infoCards"></div>
+
+        <div class="two-col">
+          <article class="panel">
+            <div class="panel-kicker">Decision relevance test</div>
+            <h3 id="relevanceHeadline">Probability information changes the action.</h3>
+            <p id="relevanceText"></p>
+            <div class="logic-equation">
+              <span>same state</span><b>+</b><span>different information</span><b>→</b><span id="actionChangeBadge">action changes</span>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-kicker">Boundary map</div>
+            <h3>Where does a forecast become actionable?</h3>
+            <p class="small-copy">
+              Each cell shows the simple forecast-informed recommendation across combinations of current resource
+              state and event probability. The outlined cell is the current scenario.
+            </p>
+            <div class="boundary-wrap">
+              <div class="y-label">Low-resource probability ↑</div>
+              <div id="boundaryMap" class="boundary-map" aria-label="Decision boundary grid"></div>
+              <div class="x-label">Resource availability →</div>
+            </div>
+            <div class="legend">
+              <span><i class="a0"></i>Maintain</span>
+              <span><i class="a10"></i>Reduce 10%</span>
+              <span><i class="a20"></i>Reduce 20%</span>
+              <span><i class="a30"></i>Reduce 30%</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="wpc-section" id="wpc">
+      <div class="shell">
+        <div class="section-heading">
+          <div class="eyebrow">WP C · STRATEGY COMPARISON</div>
+          <h2>Now keep both state and forecast fixed. Change the decision strategy.</h2>
+          <p>
+            A more sophisticated method is retained only when its different recommendation creates meaningful,
+            explainable and stable operational benefit.
+          </p>
+        </div>
+
+        <div class="strategy-table-wrap">
+          <table class="strategy-table">
+            <thead>
+              <tr>
+                <th>Strategy</th>
+                <th>Recommendation</th>
+                <th>Why</th>
+                <th>Complexity</th>
+              </tr>
+            </thead>
+            <tbody id="strategyRows"></tbody>
+          </table>
+        </div>
+
+        <div class="two-col">
+          <article class="panel">
+            <div class="panel-kicker">Robust strategy inspection</div>
+            <h3>Minimax-regret action test</h3>
+            <p class="small-copy">
+              The demo evaluates four abstraction-reduction actions across dry, normal and wet futures.
+              Loss functions are illustrative, not operational calibrations.
+            </p>
+            <div id="regretBars" class="regret-bars"></div>
+          </article>
+
+          <article class="panel">
+            <div class="panel-kicker">Complexity-benefit check</div>
+            <h3 id="complexityHeadline">Does complexity buy a different action?</h3>
+            <p id="complexityText"></p>
+            <div class="criterion-grid">
+              <div><span>Action difference</span><strong id="critAction">—</strong></div>
+              <div><span>Robustness</span><strong id="critRobust">—</strong></div>
+              <div><span>Interpretability</span><strong>Must be retained</strong></div>
+              <div><span>Implementation burden</span><strong>Must be justified</strong></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="wpd-section" id="wpd">
+      <div class="shell">
+        <div class="section-heading">
+          <div class="eyebrow">WP D · SOFTWARE LAYER</div>
+          <h2>What could a deployable decision component return?</h2>
+          <p>
+            The PhD software does not need to control irrigation automatically. A first operational version can run in
+            shadow mode: it generates a recommendation beside current practice so that users can inspect and validate it.
+          </p>
+        </div>
+
+        <div class="software-grid">
+          <article class="panel api-card">
+            <div class="panel-kicker">Example service response</div>
+            <pre id="jsonOutput"></pre>
+            <button class="button ghost copy-btn" id="copyJson">Copy JSON</button>
+          </article>
+
+          <article class="panel">
+            <div class="panel-kicker">Human-facing explanation</div>
+            <h3 id="humanAction">Reduce planned abstraction by 10%</h3>
+            <div class="why-list" id="whyList"></div>
+            <div class="shadow-note">
+              <strong>Shadow-mode principle</strong>
+              <p>
+                Recommendation is generated and logged, but the operator remains in control. The research team can compare
+                recommended vs. actual actions and outcomes before any deeper operational integration.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sources-section" id="sources">
+      <div class="shell">
+        <div class="section-heading">
+          <div class="eyebrow">SOURCES & ASSUMPTIONS</div>
+          <h2>Real context, synthetic experiment</h2>
+          <p>
+            This portfolio demo intentionally separates public facts from invented scenario values. It should not be interpreted
+            as an actual OUGC/Aquasys operating rule, drought order, allocation decision, or field recommendation.
+          </p>
+        </div>
+
+        <div class="source-grid">
+          <article class="source-card">
+            <span>Official / sector source</span>
+            <h3>Chambre d’agriculture Pays de la Loire — OUGC Authion</h3>
+            <p>Public basin scale, irrigation volumes, withdrawal points, annual requests and allocation logic.</p>
+            <a href="https://pays-de-la-loire.chambres-agriculture.fr/dossiers-thematiques/detail-dossier-thematique-crpl/ougc-authion-lorganisme-unique-de-gestion-collective-de-lirrigation-du-bassin-de-lauthion" target="_blank" rel="noopener">Open source ↗</a>
+          </article>
+          <article class="source-card">
+            <span>Aquasys</span>
+            <h3>A3P — Anticipation, Planification et Pilotage</h3>
+            <p>Dynamic irrigation service combining agronomic needs, hydrological AI prediction and satellite expertise.</p>
+            <a href="https://aquasys.fr/a3p-un-projet-dinnovation-pour-une-irrigation-agricole-plus-durable/" target="_blank" rel="noopener">Open source ↗</a>
+          </article>
+          <article class="source-card">
+            <span>Aquasys</span>
+            <h3>iryQua — collective irrigation management</h3>
+            <p>Annual allocation planning, withdrawal tracking, restrictions/tours d’eau, dashboards and farmer interfaces.</p>
+            <a href="https://aquasys.fr/agriculture-irriguee-organiser-lirrigation-collaborative/" target="_blank" rel="noopener">Open source ↗</a>
+          </article>
+          <article class="source-card">
+            <span>French State</span>
+            <h3>OUGC Authion regulatory framework</h3>
+            <p>Collective allocation through the OUGC and Plan Annuel de Répartition across ten management units.</p>
+            <a href="https://www.maine-et-loire.gouv.fr/Actions-de-l-Etat/Eau-et-Environnement/Eau-et-milieux-aquatiques/Les-prelevements-d-eau-OUGC-forage-zonages-NAEP-ZRE/Organisme-Unique-de-Gestion-Collective-OUGC/OUGC-bassin-de-l-Authion" target="_blank" rel="noopener">Open source ↗</a>
+          </article>
+        </div>
+
+        <div class="assumption-banner">
+          <strong>Replace in a real WP D pilot:</strong>
+          illustrative thresholds → partner-validated thresholds; synthetic risk score → validated loss/utility functions;
+          generic actions → feasible pilot actions; demo states → operational data; mock strategy comparison → retrospective,
+          hindcast and shadow-mode evaluation.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell footer-inner">
+      <div>
+        <strong>Irrigation Decision Layer</strong>
+        <p>Research prototype for forecast-informed water-management decisions under uncertainty.</p>
+      </div>
+      <div class="footer-note">Static HTML/CSS/JS · GitHub Pages ready · No backend required</div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
