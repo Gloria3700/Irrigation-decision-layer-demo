@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Interactive research prototype showing how probabilistic hydrological forecasts can be translated into collective irrigation decisions." />
-  <title>Irrigation Decision Layer | Research Prototype</title>
-  <link rel="stylesheet" href="styles.css?v=2.1" />
+  <meta name="description" content="Interactive research demonstrator for a configurable irrigation decision layer under hydrological uncertainty, aligned with a WP A-D research plan." />
+  <title>Irrigation Decision Layer | Research Demonstrator</title>
+  <link rel="stylesheet" href="styles.css?v=3.0" />
 </head>
 <body>
   <header class="topbar">
@@ -13,12 +13,12 @@
       <span class="drop" aria-hidden="true"></span>
       <span>
         <strong>Irrigation Decision Layer</strong>
-        <small>Research prototype v2.1 · WP A → D</small>
+        <small>Research demonstrator v3.0 · aligned with WP A → D</small>
       </span>
     </a>
     <nav>
       <a href="#context">Context</a>
-      <a href="#lab">Decision Lab</a>
+      <a href="#wpa">WP A</a>
       <a href="#wpb">WP B</a>
       <a href="#wpc">WP C</a>
       <a href="#wpd">WP D</a>
@@ -30,31 +30,28 @@
     <section class="hero shell">
       <div class="hero-copy">
         <div class="eyebrow">FORECAST → DECISION → ACTION → OUTCOME</div>
-        <h1>When should a probabilistic forecast <em>actually change</em> an irrigation decision?</h1>
+        <h1>When should uncertain hydrological information <em>actually change</em> an irrigation decision?</h1>
         <p class="lead">
-          An interactive demonstration of a configurable decision layer for collective irrigation under
-          hydrological uncertainty. The public Authion / A3P context is real; the numerical scenarios,
-          decision thresholds and loss functions in this prototype are synthetic and illustrative.
+          This browser-based research demonstrator shows how the experimental logic of WP A–D could be operationalised for collective irrigation. The public Authion / A3P context is real; all numerical thresholds, losses, probabilities and recommendations in the interactive laboratory are synthetic and illustrative.
         </p>
         <div class="hero-actions">
-          <a class="button primary" href="#lab">Open decision lab</a>
-          <a class="button ghost" href="#architecture">See RP architecture</a>
+          <a class="button primary" href="#wpa">Open the research demonstrator</a>
+          <a class="button ghost" href="#architecture">See the experimental logic</a>
         </div>
         <div class="hero-note">
-          <strong>Core idea:</strong> forecast skill is not the same as decision value. A forecast becomes valuable
-          when it changes a feasible action, improves an outcome, or helps satisfy an operational constraint.
+          <strong>Research principle:</strong> a forecast can be statistically useful without being decision-relevant. The research question is whether it changes a feasible action, improves a partner-relevant outcome, or changes the need for a more complex decision strategy.
         </div>
       </div>
 
       <div class="hero-card">
-        <div class="mini-label">Illustrative live state</div>
+        <div class="mini-label">Illustrative current case</div>
         <div class="big-risk" id="heroRisk">62%</div>
         <div class="risk-caption">14-day low-resource probability</div>
         <div class="mini-grid">
           <div><span>Resource</span><strong id="heroResource">52 / 100</strong></div>
           <div><span>Demand</span><strong id="heroDemand">76 / 100</strong></div>
           <div><span>Allocation used</span><strong id="heroUsed">68%</strong></div>
-          <div><span>Recommended</span><strong id="heroAction">Reduce 10%</strong></div>
+          <div><span>Selected action</span><strong id="heroAction">Reduce 10%</strong></div>
         </div>
         <div class="confidence-line">
           <span>Decision relevance</span>
@@ -67,17 +64,15 @@
     <section class="context-section" id="context">
       <div class="shell">
         <div class="section-heading">
-          <div class="eyebrow">REAL PUBLIC CONTEXT</div>
-          <h2>Why the Authion irrigation setting is a useful research pilot</h2>
+          <div class="eyebrow">PUBLIC IRRIGATION CONTEXT</div>
+          <h2>Why collective irrigation is a useful pilot for a decision-layer PhD</h2>
           <p>
-            Public descriptions of the Authion basin show collective allocation, many withdrawal points,
-            annual allocation planning, changing crop-water needs and drought constraints. The A3P project explicitly
-            aims to combine crop-water-demand modelling with AI-based hydrological availability forecasts for dynamic irrigation management.
+            Public descriptions of the Authion setting show collective allocation, many withdrawal points, annual allocation planning, changing crop-water demand and drought constraints. The research demonstrator does not reproduce a real partner rule; it uses this public context to make the RP logic concrete.
           </p>
         </div>
 
         <div class="fact-grid">
-          <article class="fact"><strong>~600</strong><span>irrigating farms in the Authion basin</span></article>
+          <article class="fact"><strong>~600</strong><span>irrigating farms in the public Authion description</span></article>
           <article class="fact"><strong>16–18k ha</strong><span>irrigated annually</span></article>
           <article class="fact"><strong>23–30 Mm³</strong><span>annual irrigation withdrawals reported publicly</span></article>
           <article class="fact"><strong>~2,200</strong><span>surface- and groundwater withdrawal points</span></article>
@@ -87,29 +82,19 @@
 
         <div class="context-panels">
           <article class="panel">
-            <div class="panel-kicker">What already exists?</div>
-            <h3>Collective allocation and in-season monitoring</h3>
+            <div class="panel-kicker">Existing management context</div>
+            <h3>Allocation, monitoring and operational constraints already exist</h3>
             <p>
-              Public material describes annual water-volume requests, individual and collective review,
-              an annual allocation plan, volume monitoring and collective reductions when demand exceeds available water.
+              The scientific problem is therefore not to invent water management from scratch. A real pilot already has actors, allocation rules, constraints, monitoring practices and recurring decision points that must first be reconstructed and formalised.
             </p>
-            <ul class="compact">
-              <li>Inventory of users, withdrawal points, crops and water sources</li>
-              <li>Annual allocation planning across management units</li>
-              <li>Withdrawal monitoring and drought restrictions</li>
-              <li>Rotational irrigation schedules, notifications and dashboards</li>
-            </ul>
           </article>
           <article class="panel accent">
-            <div class="panel-kicker">What is the research gap?</div>
-            <h3>From monitoring to forecast-informed action</h3>
+            <div class="panel-kicker">Research gap</div>
+            <h3>Prediction does not specify action</h3>
             <p>
-              The missing layer is not another forecast model. It is the logic that decides
-              <strong>which predictive information should change which action, in which operational state, and under which decision strategy.</strong>
+              A probability, ensemble or scenario set becomes operational only after it is interpreted within a decision context. The RP therefore separates decision context, predictive information and decision strategy before asking what action should follow.
             </p>
-            <div class="flow-mini">
-              <span>State</span><b>×</b><span>Forecast</span><b>×</b><span>Strategy</span><b>→</b><span>Action</span><b>→</b><span>Outcome</span>
-            </div>
+            <div class="flow-mini"><span>Context</span><b>×</b><span>Forecast</span><b>×</b><span>Strategy</span><b>→</b><span>Action</span><b>→</b><span>Outcome</span></div>
           </article>
         </div>
       </div>
@@ -118,50 +103,29 @@
     <section class="architecture-section" id="architecture">
       <div class="shell">
         <div class="section-heading">
-          <div class="eyebrow">RP ARCHITECTURE</div>
-          <h2>The two controlled experiments are deliberately different</h2>
-        </div>
-
-        <div class="experiment-pair">
-          <article class="experiment-card">
-            <div class="wp-tag">WP B</div>
-            <h3>Information experiment</h3>
-            <div class="fix-change-observe">
-              <div><small>FIX</small><strong>State + decision rule</strong></div>
-              <div><small>CHANGE</small><strong>Forecast information</strong></div>
-              <div><small>OBSERVE</small><strong>Action + outcome</strong></div>
-            </div>
-          </article>
-          <article class="experiment-card">
-            <div class="wp-tag">WP C</div>
-            <h3>Strategy experiment</h3>
-            <div class="fix-change-observe">
-              <div><small>FIX</small><strong>State + forecast</strong></div>
-              <div><small>CHANGE</small><strong>Decision strategy</strong></div>
-              <div><small>OBSERVE</small><strong>Action + outcome + complexity</strong></div>
-            </div>
-          </article>
+          <div class="eyebrow">RP EXPERIMENTAL LOGIC</div>
+          <h2>Each work package changes a different part of the decision chain</h2>
         </div>
 
         <div class="wp-strip">
-          <article><div class="wp-tag">WP A</div><h3>Decision context</h3><p>Reconstruct current practice: actor, state, actions, objectives, constraints, horizon and baseline rule.</p></article>
+          <article><div class="wp-tag">WP A</div><h3>Reconstruct the decision</h3><p>Document who decides, what state they observe, what actions remain feasible, which constraints apply, and turn current practice into a replayable baseline.</p></article>
           <div class="arrow">→</div>
-          <article><div class="wp-tag">WP B</div><h3>Information value</h3><p>Identify when forecast detail actually changes action, timing, intensity or outcome.</p></article>
+          <article><div class="wp-tag">WP B</div><h3>Change the information</h3><p>Hold the operational state, feasible actions and decision rule fixed while the forecast representation changes.</p></article>
           <div class="arrow">→</div>
-          <article><div class="wp-tag">WP C</div><h3>Strategy value</h3><p>Test whether a more complex decision strategy creates enough operational benefit to justify itself.</p></article>
+          <article><div class="wp-tag">WP C</div><h3>Change the strategy</h3><p>Hold state and forecast fixed while current practice, simple rules, chance constraints and robust strategies are compared.</p></article>
           <div class="arrow">→</div>
-          <article><div class="wp-tag">WP D</div><h3>Decision service</h3><p>Return a traceable recommendation, reason and review horizon for digital integration and shadow-mode testing.</p></article>
+          <article><div class="wp-tag">WP D</div><h3>Prototype the retained logic</h3><p>Expose traceable inputs, assumptions, outputs and explanations for replay, simulation and possible shadow-mode evaluation.</p></article>
         </div>
       </div>
     </section>
 
-    <section class="lab-section" id="lab">
+    <section class="lab-section" id="wpa">
       <div class="shell">
         <div class="section-heading">
-          <div class="eyebrow">INTERACTIVE RESEARCH DEMO</div>
-          <h2>Build one operational state, then let every WP reuse it</h2>
+          <div class="eyebrow">WP A · DECISION CONTEXT + REPLAYABLE BASELINE</div>
+          <h2>Start from how the decision is actually made, not from an optimisation model</h2>
           <p>
-            Move the controls or choose a preset. The same current state feeds WP B and WP C so that the experimental logic remains transparent.
+            In the real PhD, this stage would use operating documents, decision records, hydrological and demand data, and partner discussions. Here, the context is deliberately simplified so that the later WP B and WP C experiments can be demonstrated transparently.
           </p>
         </div>
 
@@ -173,10 +137,10 @@
           <button data-preset="moderate" class="preset">Moderate probability, vulnerable state</button>
         </div>
 
-        <div class="lab-grid">
+        <div class="wpa-grid">
           <section class="controls panel">
-            <div class="panel-kicker">WP A · State definition</div>
-            <h3>Operational state</h3>
+            <div class="panel-kicker">Current operational state</div>
+            <h3>Variables observed before the decision</h3>
 
             <label class="control">
               <span><b>Resource availability index</b><output id="resourceOut">52</output></span>
@@ -195,9 +159,48 @@
               <input id="used" type="range" min="0" max="100" value="68" />
               <small>Illustrates how much flexibility remains within an annual allocation.</small>
             </label>
+          </section>
 
-            <div class="divider"></div>
-            <div class="panel-kicker">WP B · Predictive information</div>
+          <section class="panel decision-context-panel">
+            <div class="panel-kicker">Decision-context representation</div>
+            <h3>What WP A must make explicit</h3>
+            <div class="context-grid">
+              <div><span>Decision-maker</span><strong>Collective irrigation manager <em>illustrative</em></strong></div>
+              <div><span>Feasible actions</span><strong>Maintain · reduce 10% · 20% · 30%</strong></div>
+              <div><span>Objectives</span><strong>Protect resource reliability while limiting unnecessary crop restriction</strong></div>
+              <div><span>Constraints</span><strong>Annual allocation · resource condition · feasible intervention intensity</strong></div>
+              <div><span>Decision update</span><strong id="contextUpdate">Every 3 days in this demo</strong></div>
+              <div><span>Relevant outcomes</span><strong>Resource deficit · crop loss · intervention burden · constraint violation</strong></div>
+            </div>
+            <div class="context-warning">
+              <strong>Not a validated pilot rule.</strong> In the PhD, these elements would be reconstructed from evidence and reviewed with partners; disagreements and assumptions would remain visible.
+            </div>
+          </section>
+        </div>
+
+        <article class="panel baseline-panel">
+          <div class="panel-kicker">Illustrative replayable current-practice baseline</div>
+          <h3>Turn reconstructed practice into a rule that can be replayed on the same case</h3>
+          <div class="baseline-flow">
+            <div><small>1</small><strong>Observed state</strong><span id="baselineObserved">Resource 52 · allocation used 68%</span></div>
+            <b>→</b>
+            <div><small>2</small><strong>Documented trigger proxy</strong><span id="baselineTrigger">No hard state threshold crossed</span></div>
+            <b>→</b>
+            <div><small>3</small><strong>Informal judgement / unresolved choice</strong><span>Represented only as an explicit assumption in this demo</span></div>
+            <b>→</b>
+            <div><small>4</small><strong>Feasible-action check</strong><span>0 / 10 / 20 / 30% reduction available</span></div>
+            <b>→</b>
+            <div class="baseline-result"><small>5</small><strong>Replayable baseline action</strong><span id="baselineActionText">Maintain</span></div>
+          </div>
+          <p class="small-copy">
+            A real WP A baseline would be checked against available historical decisions and partner review. Synthetic states can test how the rule behaves, but they do not establish how often those situations occurred in practice.
+          </p>
+        </article>
+
+        <div class="forecast-output-grid">
+          <section class="controls panel">
+            <div class="panel-kicker">Predictive information used by later WPs</div>
+            <h3>Forecast representation</h3>
 
             <label class="control">
               <span><b>Probability of low-resource event</b><output id="probOut">62%</output></span>
@@ -222,7 +225,7 @@
           </section>
 
           <section class="decision panel output-panel">
-            <div class="panel-kicker">Current decision-service output</div>
+            <div class="panel-kicker">Illustrative decision-service output</div>
             <div class="status-row"><span class="status-dot" id="statusDot"></span><span id="riskBand">Elevated risk</span></div>
             <div class="decision-action" id="decisionAction">Reduce planned abstraction by 10%</div>
             <p id="decisionReason"></p>
@@ -235,10 +238,10 @@
             </div>
 
             <div class="strategy-switch">
-              <span>Use strategy:</span>
+              <span>Use illustrative strategy:</span>
               <button class="strategy-btn" data-strategy="baseline">Current practice</button>
               <button class="strategy-btn active" data-strategy="simple">Simple threshold</button>
-              <button class="strategy-btn" data-strategy="risk">Risk-aware</button>
+              <button class="strategy-btn" data-strategy="chance">Chance-constrained</button>
               <button class="strategy-btn" data-strategy="robust">Robust minimax regret</button>
             </div>
 
@@ -252,11 +255,13 @@
       <div class="shell">
         <div class="section-heading">
           <div class="eyebrow">WP B · CONTROLLED INFORMATION EXPERIMENT</div>
-          <h2>Keep the state and decision rule fixed. Change only the forecast information.</h2>
-          <p>This isolates the value of information. Richer information is useful only if it changes action or improves the resulting outcome.</p>
+          <h2>Keep the state, feasible actions and decision rule fixed. Change only the forecast information.</h2>
+          <p>
+            This isolates the contribution of information. The experiment asks whether a different representation changes the action, its timing or intensity, and then whether the changed action improves an outcome.
+          </p>
         </div>
 
-        <div class="experiment-rule"><span>FIXED</span> current state + simple forecast-informed decision rule <b>→</b> <span>CHANGED</span> information representation</div>
+        <div class="experiment-rule"><span>FIXED</span> state + feasible actions + simple decision rule <b>→</b> <span>CHANGED</span> forecast information <b>→</b> compare action + outcome</div>
 
         <div class="info-cards" id="infoCards"></div>
 
@@ -269,50 +274,76 @@
           </article>
 
           <article class="panel">
-            <div class="panel-kicker">WP B boundary map · strategy held fixed</div>
-            <h3>Where does forecast information become actionable?</h3>
-            <p class="small-copy">
-              This map deliberately holds the <strong>simple forecast-informed rule</strong> fixed. Each cell shows its recommendation across resource state and event probability. The outlined cell is the current scenario.
-            </p>
-            <div class="boundary-wrap">
-              <div class="y-label">Low-resource probability ↑</div>
-              <div id="boundaryMap" class="boundary-map" aria-label="WP B decision boundary grid"></div>
-              <div class="x-label">Resource availability →</div>
+            <div class="panel-kicker">Forecast quality ≠ decision value</div>
+            <h3>Keep predictive diagnostics separate from operational usefulness</h3>
+            <div class="diagnostic-grid">
+              <div><span>Calibration / reliability</span><strong>Requires hindcast + observation archive</strong></div>
+              <div><span>CRPS</span><strong>Requires probabilistic hindcasts</strong></div>
+              <div><span>Brier-type score</span><strong>Requires event forecasts + outcomes</strong></div>
+              <div class="decision-diagnostic"><span>Current synthetic decision test</span><strong id="decisionValueDiagnostic">Action changes</strong></div>
             </div>
-            <div class="legend">
-              <span><i class="a0"></i>Maintain</span><span><i class="a10"></i>Reduce 10%</span><span><i class="a20"></i>Reduce 20%</span><span><i class="a30"></i>Reduce 30%</span>
-            </div>
+            <p class="small-copy">This demonstrator deliberately does not invent forecast-skill scores. In the RP, those diagnostics are reported separately from action and outcome comparisons.</p>
           </article>
         </div>
+
+        <article class="panel wpb-map-panel">
+          <div class="panel-kicker">Decision-boundary analysis · strategy held fixed</div>
+          <h3>Where does forecast information become actionable?</h3>
+          <p class="small-copy">
+            The simple forecast-informed rule is held fixed. Each cell shows its recommendation across resource state and event probability. The outlined cell is the current case.
+          </p>
+          <div class="boundary-wrap">
+            <div class="y-label">Low-resource probability ↑</div>
+            <div id="boundaryMap" class="boundary-map" aria-label="WP B decision boundary grid"></div>
+            <div class="x-label">Resource availability →</div>
+          </div>
+          <div class="legend">
+            <span><i class="a0"></i>Maintain</span><span><i class="a10"></i>Reduce 10%</span><span><i class="a20"></i>Reduce 20%</span><span><i class="a30"></i>Reduce 30%</span>
+          </div>
+        </article>
       </div>
     </section>
 
     <section class="wpc-section" id="wpc">
       <div class="shell">
         <div class="section-heading">
-          <div class="eyebrow">WP C · STRATEGY COMPARISON</div>
-          <h2>Keep both state and forecast fixed. Change the decision strategy.</h2>
+          <div class="eyebrow">WP C · STRATEGY COMPARISON + COMPLEXITY TEST</div>
+          <h2>Keep state and forecast fixed. Change the way uncertainty is turned into action.</h2>
           <p>
-            The action is <strong>not</strong> fixed. It is the strategy output. If two strategies recommend the same action,
-            this prototype assigns them the same physical management consequence; the more complex method must then justify itself through robustness, constraint handling or another operational benefit.
+            The action is an output, not a fixed input. A more complex strategy only clears the first RP gate when it changes the action <strong>and</strong> improves a partner-relevant outcome. Stability, interpretability, data needs and maintenance burden are then considered before further testing.
           </p>
         </div>
 
-        <div class="experiment-rule"><span>FIXED</span> current state + forecast <b>→</b> <span>CHANGED</span> decision strategy <b>→</b> compare action + consequences + complexity</div>
+        <div class="experiment-rule"><span>FIXED</span> state + forecast <b>→</b> <span>CHANGED</span> decision strategy <b>→</b> compare action + partner-relevant outcome + operational burden</div>
 
         <div class="strategy-cards" id="strategyCards"></div>
 
+        <div class="chance-panel panel">
+          <div class="panel-kicker">Illustrative chance-constrained strategy</div>
+          <div class="chance-grid">
+            <div>
+              <h3>Use a partner-agreed violation tolerance</h3>
+              <p class="small-copy">The rule selects the least restrictive feasible action whose synthetic violation probability is below the chosen tolerance. In a real pilot, the tolerance would be agreed with operational partners.</p>
+              <label class="control compact-control">
+                <span><b>Illustrative violation tolerance</b><output id="toleranceOut">50%</output></span>
+                <input id="tolerance" type="range" min="20" max="70" step="5" value="50" />
+              </label>
+            </div>
+            <div id="chanceTable" class="chance-table"></div>
+          </div>
+        </div>
+
         <div class="wpc-visual-grid">
           <article class="panel strategy-map-panel">
-            <div class="panel-kicker">Strategy boundary explorer</div>
-            <h3>How does the decision surface change when the strategy changes?</h3>
+            <div class="panel-kicker">Strategy comparison across the state–forecast space</div>
+            <h3>Where does changing the strategy actually change the recommended action?</h3>
             <p class="small-copy">
-              Select a strategy below. The map uses the same axes as WP B, but now the decision strategy itself changes. Cells with a dot differ from current practice.
+              The axes are the same as WP B. Here the forecast representation is held fixed while the strategy changes. Dotted cells differ from current practice.
             </p>
-            <div class="strategy-map-controls" id="strategyMapControls">
+            <div class="strategy-map-controls">
               <button class="map-strategy-btn" data-map-strategy="baseline">Current practice</button>
               <button class="map-strategy-btn active" data-map-strategy="simple">Simple threshold</button>
-              <button class="map-strategy-btn" data-map-strategy="risk">Risk-aware</button>
+              <button class="map-strategy-btn" data-map-strategy="chance">Chance-constrained</button>
               <button class="map-strategy-btn" data-map-strategy="robust">Robust minimax regret</button>
             </div>
             <div class="boundary-wrap large-map">
@@ -322,8 +353,8 @@
             </div>
             <div class="map-summary">
               <div><span>Selected strategy</span><strong id="mapStrategyName">Simple threshold</strong></div>
-              <div><span>Grid cells changed vs current practice</span><strong id="mapDifferenceRate">—</strong></div>
-              <div><span>Current-state action</span><strong id="mapCurrentAction">—</strong></div>
+              <div><span>Cells changed vs current practice</span><strong id="mapDifferenceRate">—</strong></div>
+              <div><span>Current-case action</span><strong id="mapCurrentAction">—</strong></div>
             </div>
             <div class="legend">
               <span><i class="a0"></i>Maintain</span><span><i class="a10"></i>Reduce 10%</span><span><i class="a20"></i>Reduce 20%</span><span><i class="a30"></i>Reduce 30%</span><span><i class="diff-dot"></i>Differs from current practice</span>
@@ -331,15 +362,15 @@
           </article>
 
           <article class="panel outcome-panel">
-            <div class="panel-kicker">Current-state consequence comparison</div>
-            <h3>Different strategies are useful only when their actions create better trade-offs</h3>
+            <div class="panel-kicker">Current-case consequence comparison</div>
+            <h3>Different strategies matter only through different actions and outcomes</h3>
             <p class="small-copy">
-              Lower synthetic management loss and lower worst-case regret are better. Strategies that choose the same action receive the same physical outcome metrics.
+              Strategies that choose the same physical action receive the same synthetic physical consequence. Lower values are better for all three metrics shown here.
             </p>
             <div class="metric-toggle">
               <button class="metric-btn active" data-metric="expected">Expected management loss</button>
               <button class="metric-btn" data-metric="regret">Worst-case regret</button>
-              <button class="metric-btn" data-metric="risk">Residual resource-risk index</button>
+              <button class="metric-btn" data-metric="risk">Violation-risk proxy</button>
             </div>
             <div id="strategyOutcomeBars" class="outcome-bars"></div>
             <div class="metric-note" id="metricNote"></div>
@@ -348,28 +379,97 @@
 
         <div class="two-col wpc-bottom">
           <article class="panel">
-            <div class="panel-kicker">Complexity gate</div>
-            <h3>Does the advanced method earn its extra complexity?</h3>
+            <div class="panel-kicker">Strict complexity gate</div>
+            <h3>Does the advanced method earn further testing?</h3>
             <div class="candidate-switch">
               <span>Evaluate candidate:</span>
               <button class="candidate-btn active" data-candidate="robust">Robust minimax regret</button>
-              <button class="candidate-btn" data-candidate="risk">Risk-aware</button>
+              <button class="candidate-btn" data-candidate="chance">Chance-constrained</button>
             </div>
+
+            <label class="select-row gate-select">
+              <span><b>Partner-relevant primary outcome</b></span>
+              <select id="gateOutcome">
+                <option value="expected" selected>Expected management loss</option>
+                <option value="regret">Worst-case regret</option>
+                <option value="risk">Violation-risk proxy</option>
+              </select>
+            </label>
+
+            <label class="control compact-control">
+              <span><b>Minimum material improvement</b><output id="benefitOut">5%</output></span>
+              <input id="benefitThreshold" type="range" min="0" max="20" step="1" value="5" />
+            </label>
+
+            <div class="gate-steps">
+              <div id="gate1"><span>Gate 1</span><strong>Action changes</strong><em>—</em></div>
+              <div id="gate2"><span>Gate 2</span><strong>Primary outcome improves</strong><em>—</em></div>
+              <div id="gate3"><span>Then check</span><strong>Stability / interpretability / burden</strong><em>Review</em></div>
+            </div>
+
             <div class="complexity-verdict" id="complexityVerdict"></div>
-            <div class="criterion-grid">
-              <div><span>Action vs simple rule</span><strong id="critAction">—</strong></div>
-              <div><span>Expected loss change</span><strong id="critExpected">—</strong></div>
-              <div><span>Worst regret change</span><strong id="critRegret">—</strong></div>
-              <div><span>Risk-tolerance test</span><strong id="critRisk">—</strong></div>
-            </div>
             <p class="small-copy" id="complexityText"></p>
           </article>
 
           <article class="panel">
-            <div class="panel-kicker">Scenario consequence matrix</div>
-            <h3>One action can look different under dry, normal and wet futures</h3>
-            <p class="small-copy">The values below are synthetic total-loss units used only to make the strategy comparison visible.</p>
+            <div class="panel-kicker">Scenario-based comparison</div>
+            <h3>Replay the same actions under dry, normal and wet futures</h3>
+            <p class="small-copy">The values below are synthetic total-loss units used only to demonstrate matched-case comparison and regret calculations.</p>
             <div id="scenarioMatrix" class="scenario-matrix"></div>
+          </article>
+        </div>
+
+        <div class="two-col wpc-bottom">
+          <article class="panel sensitivity-panel">
+            <div class="panel-kicker">Sensitivity and robustness checks</div>
+            <h3>Does the recommendation remain stable when credible assumptions move?</h3>
+            <div class="candidate-switch">
+              <span>Test strategy:</span>
+              <button class="sensitivity-btn active" data-sensitivity-strategy="robust">Robust</button>
+              <button class="sensitivity-btn" data-sensitivity-strategy="chance">Chance-constrained</button>
+            </div>
+
+            <label class="control compact-control">
+              <span><b>Forecast perturbation</b><output id="sensForecastOut">±8 pp</output></span>
+              <input id="sensForecast" type="range" min="0" max="15" step="1" value="8" />
+            </label>
+            <label class="control compact-control">
+              <span><b>Objective-weight perturbation</b><output id="sensWeightOut">±20%</output></span>
+              <input id="sensWeight" type="range" min="0" max="40" step="5" value="20" />
+            </label>
+            <label class="control compact-control">
+              <span><b>Chance-tolerance perturbation</b><output id="sensToleranceOut">±10 pp</output></span>
+              <input id="sensTolerance" type="range" min="0" max="20" step="5" value="10" />
+            </label>
+
+            <div class="sensitivity-summary">
+              <div><span>Nominal action</span><strong id="sensitivityNominal">—</strong></div>
+              <div><span>Recommendation stability</span><strong id="sensitivityStability">—</strong></div>
+              <div><span>Cases tested</span><strong id="sensitivityCases">—</strong></div>
+            </div>
+            <div id="sensitivityDistribution" class="sensitivity-distribution"></div>
+            <p class="small-copy" id="sensitivityNote"></p>
+          </article>
+
+          <article class="panel simplification-panel">
+            <div class="panel-kicker">Interpretable simplification</div>
+            <h3>Can a complex strategy be approximated by a simpler rule?</h3>
+            <p class="small-copy">
+              The RP only attempts simplification after a complex strategy has shown useful behaviour. This demo fits a simple two-threshold surrogate to the candidate decision surface to illustrate that step.
+            </p>
+            <div class="candidate-switch">
+              <span>Approximate:</span>
+              <button class="simplify-btn active" data-simplify-strategy="robust">Robust</button>
+              <button class="simplify-btn" data-simplify-strategy="chance">Chance-constrained</button>
+            </div>
+            <div class="surrogate-rule" id="surrogateRule"></div>
+            <div class="surrogate-score">
+              <span>Agreement across 10 × 10 state–forecast grid</span>
+              <strong id="surrogateAgreement">—</strong>
+              <div class="meter large"><i id="surrogateMeter"></i></div>
+            </div>
+            <div class="surrogate-current"><span>Current case</span><strong id="surrogateCurrent">—</strong></div>
+            <p class="small-copy" id="surrogateNote"></p>
           </article>
         </div>
       </div>
@@ -378,17 +478,16 @@
     <section class="wpd-section" id="wpd">
       <div class="shell">
         <div class="section-heading">
-          <div class="eyebrow">WP D · SOFTWARE LAYER</div>
-          <h2>Turn retained forecast-to-action logic into a traceable decision service</h2>
+          <div class="eyebrow">WP D · CONCEPTUAL DECISION-SERVICE ARCHITECTURE</div>
+          <h2>Expose retained forecast-to-action logic as traceable software inputs and outputs</h2>
           <p>
-            A first operational version does not need to control irrigation automatically. It can run in shadow mode:
-            generate a recommendation beside current practice, log the rationale, and compare recommended versus actual actions and outcomes.
+            The RP ultimately proposes modular Python components whose inputs, parameter settings and outputs can be checked separately from the user interface. This website is a browser-based conceptual demonstrator of that architecture, not the final WP D implementation.
           </p>
         </div>
 
         <div class="software-grid">
           <article class="panel api-card">
-            <div class="panel-kicker">Example service response</div>
+            <div class="panel-kicker">Example machine-readable response</div>
             <pre id="jsonOutput"></pre>
             <button class="button ghost copy-btn" id="copyJson">Copy JSON</button>
           </article>
@@ -400,7 +499,13 @@
             <div class="shadow-note">
               <strong>Shadow-mode principle</strong>
               <p>
-                Recommendation is generated and logged, but the operator remains in control. This allows retrospective and prospective comparison before deeper operational integration.
+                The prototype recommendation can be generated and logged beside existing practice without controlling the water system. This supports replay, scenario testing and later comparison with operator actions before any deeper integration.
+              </p>
+            </div>
+            <div class="shadow-note secondary">
+              <strong>Production boundary</strong>
+              <p>
+                A real implementation would replace synthetic thresholds and loss functions with partner-validated rules, operational data, agreed objectives, unit/scenario tests and software specifications reviewed with Aquasys developers.
               </p>
             </div>
           </article>
@@ -412,9 +517,9 @@
       <div class="shell">
         <div class="section-heading">
           <div class="eyebrow">SOURCES & ASSUMPTIONS</div>
-          <h2>Real context, synthetic experiment</h2>
+          <h2>Real public context, synthetic research experiment</h2>
           <p>
-            The portfolio site deliberately separates public facts from invented scenario values. It is not an actual Aquasys, Authion or field-partner operating rule, allocation decision or irrigation recommendation.
+            The demonstrator deliberately separates public facts from invented scenario values. It is not an actual Aquasys, Authion or field-partner operating rule, allocation decision or irrigation recommendation.
           </p>
         </div>
 
@@ -446,9 +551,8 @@
         </div>
 
         <div class="assumption-banner">
-          <strong>What a real WP D pilot would replace:</strong>
-          illustrative thresholds → partner-validated thresholds; synthetic loss functions → agreed operational objectives;
-          generic actions → legally and operationally feasible actions; demo states → operational data; mock comparisons → retrospective, hindcast and shadow-mode evaluation.
+          <strong>What a real pilot must replace or validate:</strong>
+          illustrative state variables → operational variables; synthetic thresholds → reconstructed and partner-reviewed rules; generic actions → feasible actions; synthetic risk/loss functions → agreed outcome measures; toy scenarios → historical, hindcast, reconstructed or justified simulated cases; browser code → tested modular software components.
         </div>
       </div>
     </section>
@@ -456,11 +560,11 @@
 
   <footer>
     <div class="shell footer-inner">
-      <div><strong>Irrigation Decision Layer</strong><p>Research prototype for forecast-informed water-management decisions under uncertainty.</p></div>
-      <div class="footer-note">Static HTML/CSS/JS · GitHub Pages ready · No backend required</div>
+      <div><strong>Irrigation Decision Layer</strong><p>Interactive research demonstrator of the WP A–D experimental logic for forecast-informed water management under uncertainty.</p></div>
+      <div class="footer-note">Static HTML/CSS/JS · GitHub Pages ready · synthetic demonstration only</div>
     </div>
   </footer>
 
-  <script src="app.js?v=2.1"></script>
+  <script src="app.js?v=3.0"></script>
 </body>
 </html>
